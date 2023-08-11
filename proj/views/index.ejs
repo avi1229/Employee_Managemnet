@@ -113,7 +113,7 @@
             <input type="text" id="employee-name" value="<%= user && user[0] ? user[0].e_name : '' %>" name="employeeName" required>
 
             <label for="employee-id">Employee id</label>
-            <input type="text" id="employee-id" name="employeeid" value="<%= user && user[0] ? user[0].e_id : '' %>" required>
+            <input type="number" id="employee-id" name="employeeid" value="<%= user && user[0] ? user[0].e_id : '' %>" required>
 
             <label for="department">Department</label>
             <select id="department" name="department" value="<%= user && user[0] ? user[0].e_department : 'select' %>">
