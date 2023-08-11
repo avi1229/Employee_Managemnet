@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Details Page</title>
+</head>
+<body>
+    <div>
+        <!-- Response data will be displayed here -->
+        <h1>Employees Details </h1>
+    <br/>
+    <br/>
+    <br/>
+    <table id="ttable">
+      <thead id="tthead">
+      <tr>
+          <th>Employee Name</th>
+          <th>Employee Id</th>
+          <th>Gender</th>
+          <th>Department</th>
+          <th>Marital Status</th>
+          <th>Salary</th>
+          <th>Address</th>
+
+          
+      </tr>
+  </thead>
+  <tbody id="ttbody">
+      <% results.forEach(function(user){ %>
+      <tr>
+         <td id="id"><%= user.e_name %></td>
+         <td><%= user.e_id %></td>
+         <td><%= user.e_gender %></td>
+         <td><%= user.e_department%></td>
+         <td><%= user.e_maritalstatus%></td>
+         <td><%= user.e_salary%></td>
+         <td><%= user.address %></td>
+ 
+      </tr>
+      <%});%>
+  </tbody>
+  </table>
+    </div>
+
+    <script src="details.js"></script>
+</body>
+</html>

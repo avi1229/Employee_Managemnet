@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary Management</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Employee Salary Management</h1>
+    </header>
+    <div class="container">
+        <form id="employee-form" action="/addEmployee" method="post">
+            <label for="employee-name">Employee name</label>
+            <input type="text" id="employee-name" name="employeeName" required>
+
+            <label for="employee-id">Employee id</label>
+            <input type="text" id="employee-id" name="employeeid" required>
+
+            <label for="department">Department</label>
+            <select id="department" name="department">
+                <option value="select">Select</option>
+                <option value="hr">HR</option>
+                <option value="finance">Finance</option>
+                <option value="it">IT</option>
+                <option value="marketing">Marketing</option>
+            </select>
+            <br /><br />
+
+
+
+            <div>
+                <label for="sex" required>Sex</label>
+                <tr>
+                    <td><input type="radio" name="sex">Male</td>
+                    <td><input type="radio" name="sex">Female</td>
+                    <td><input type="radio" name="sex">Other</td>
+                </tr>
+            </div>
+
+
+            <label for="marital-status">Marital Status</label>
+            <input type="text" id="marital-status" name="maritalstatus" required>
+
+            <label for="employee-salary">Salary</label>
+            <input type="number" id="employee-salary" name="employeesalary" required>
+
+            <label for="employee-address">Address</label>
+            <input type="text" id="employee-address" name="employeeaddress" required>
+
+            <button type="submit">Submit</button>
+        </form>
+        <form action="/displayemployees" method="get">
+        <button  onclick="View()">View</button>
+    </form>
+        <button onclick="cancel()">Cancel</button>
+
+    </div>
+
+    <script>
+        <!-- function view() {
+
+            fetch('/displayemployees', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response from the server if needed
+                    console.log(data);
+                    localStorage.setItem('formData', JSON.stringify(data)); // Store data in localStorage
+                    window.location.href = 'details.html'; // Redirect to details page
+                })
+                .catch(error => {
+                    console.error('Error sending data:', error);
+                });
+
+
+        } -->
+        function cancel() {
+            document.addEventListener('DOMContentLoaded', () => {
+                const form = document.getElementById('employee-form');
+
+                form.addEventListener('submit', (event) => {
+                    event.preventDefault();
+
+
+                    form.reset();
+                    fetch('/employee', {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Handle the response from the server if needed
+                            console.log(data);
+                            localStorage.setItem('formData', JSON.stringify(data)); // Store data in localStorage
+                            window.location.href = 'details.html'; // Redirect to details page
+                        })
+                        .catch(error => {
+                            console.error('Error sending data:', error);
+                        });
+
+                });
+            });
+        }
+
+    </script>
+</body>
+
+</html>
