@@ -82,7 +82,7 @@ app.post('/addEmployee', (req, res) => {
 app.get('/delete/:id', (req, res) => {
     console.log(req.params.id)
     const Id = req.params.id;
-    connection.query('DELETE FROM employees WHERE e_id = ?', [Id], (error, results) => {
+    db.query('DELETE FROM employees WHERE e_id = ?', [Id], (error, results) => {
         if (error) {
             console.error('Error deleting data:', error);
         } else {
