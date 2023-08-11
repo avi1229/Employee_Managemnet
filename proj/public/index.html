@@ -7,7 +7,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Salary Management</title>
     <style>
+        input[type="number"] {
 
+            font-size: 14px;
+            width: 100%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1em;
+        }
+
+        select{
+
+            font-size: 14px;
+            width: 50%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1em;
+
+        }
+
+        /* Adjust appearance of spinner arrows */
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            appearance: none;
+            margin: 0;
+        }
+
+        /* Style for Firefox */
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
     </style>
 </head>
 
@@ -44,23 +75,30 @@
                 </tr>
             </div>
 
+            <br />
 
-            <label for="marital-status">Marital Status</label>
-            <input type="text" id="marital-status" name="maritalstatus" required>
-
+            <div>
+                <label for="maritalstatus" required>Marital Status</label>
+                <tr>
+                    <td><input type="radio" name="maritalstatus" value="Single">Single</td>
+                    <td><input type="radio" name="maritalstatus" value="Married">Married</td>
+                    <td><input type="radio" name="maritalstatus" value="Divorced">Divorced</td>
+                </tr>
+            </div>
+            <br />
             <label for="employee-salary">Salary</label>
-            <input type="number" id="employee-salary" name="employeesalary" required>
+            <input type="number" id="employee-salary" name="employeesalary" min="1000" required>
 
             <label for="employee-address">Address</label>
             <input type="text" id="employee-address" name="employeeaddress" required>
 
-            <button type="submit">Submit</button>
+            <button type="submit">Submit</button><br /><br />
         </form>
         <form action="/displayemployees" method="get">
-        <button>View</button>
-    </form>
-        <!-- <button onclick="cancel()">Cancel</button> -->
-        <button ><a style="text-decoration: none;color:white" href="/displayemployees" >Cancel</a></button>
+            <button>View</button><br /><br />
+        </form>
+
+        <button><a style="text-decoration: none;color:white" href="/displayemployees">Cancel</a></button>
     </div>
 
     <script>

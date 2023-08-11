@@ -89,8 +89,20 @@ app.get('/delete/:id', (req, res) => {
         } else {
             console.log('Data deleted successfully');
         }
-        res.redirect('/addEmployee');
+        res.redirect('/displayemployees');
     });
+});
+
+app.get('/edit/:id',(req,res)=>{
+    const Id = req.params.id;
+    db.query('select * from employees where e_id = ?',[Id], (error, results) => {
+        if (error) {
+            console.error('Error editing data:', error);
+        } else {
+            res.render('index', { results: results });
+        }
+    });
+
 });
 
 const port = 3001;
