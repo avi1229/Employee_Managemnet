@@ -79,6 +79,19 @@ app.post('/addEmployee', (req, res) => {
     });
 });
 
+app.get('/delete/:id', (req, res) => {
+    console.log(req.params.id)
+    const Id = req.params.id;
+    connection.query('DELETE FROM employees WHERE e_id = ?', [Id], (error, results) => {
+        if (error) {
+            console.error('Error deleting data:', error);
+        } else {
+            console.log('Data deleted successfully');
+        }
+        res.redirect('/');
+    });
+});
+
 const port = 3001;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
