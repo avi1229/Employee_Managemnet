@@ -31,7 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route to render the HTML file
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    results=[{"maritalstatus":" "}];
+    res.render('index',{user:results});
 });
 
 app.get('/employees', (req, res) => {
@@ -97,9 +98,9 @@ app.get('/edit/:id',(req,res)=>{
     const Id = req.params.id;
     db.query('select * from employees where e_id = ?',[Id], (error, results) => {
         if (error) {
-            console.error('Error editing data:', error);
+            console.log('Error editing data:', error);
         } else {
-            res.render('index', { results: results });
+            res.render('index', { user: results });
         }
     });
 
