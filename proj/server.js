@@ -20,7 +20,7 @@ const db = mysql.createConnection({
 
 db.connect((err) => {
     if (err) console.log(err);
-    else{
+    else {
         console.log('Connected to database');
     }
 
@@ -37,27 +37,28 @@ app.get('/', (req, res) => {
 app.get('/employees', (req, res) => {
     db.query('SELECT * FROM employees', (err, results) => {
         if (err) throw err;
-        res.json(results);
+        res.render('details', { results: results });
     });
 });
+
 app.get('/displayemployees', (req, res) => {
     db.query('SELECT * FROM employees', (err, results) => {
         if (err) throw err;
-        res.render('details',{results:results});
+        res.render('details', { results: results });
     });
 });
 
 app.post('/addEmployee', (req, res) => {
     // const { name, salary } = req.body;
     console.log(req.body);
-    const id=req.body.employeeid;
-    const name=req.body.employeeName;
-    const dep=req.body.department;
-    const gender=req.body.sex;
-    const maritalstatus=req.body.maritalstatus;
-    const employeesalary=req.body.employeesalary;
-    const address=req.body.employeeaddress;
-    const formData=[id,name,dep,gender,maritalstatus,employeesalary,address];
+    const id = req.body.employeeid;
+    const name = req.body.employeeName;
+    const dep = req.body.department;
+    const gender = req.body.sex;
+    const maritalstatus = req.body.maritalstatus;
+    const employeesalary = req.body.employeesalary;
+    const address = req.body.employeeaddress;
+    const formData = [id, name, dep, gender, maritalstatus, employeesalary, address];
     const sql = `INSERT INTO employees(e_id,e_name,department,e_gender,e_maritalstatus,e_salary,e_address) VALUES (?,?,?,?,?,?,?)`;
     db.query(sql, formData, (err, result) => {
         if (err) {
@@ -72,7 +73,7 @@ app.post('/addEmployee', (req, res) => {
                     console.error('Database retrieval error:', err);
                     res.status(500).json({ message: 'Error retrieving data from the database' });
                 } else {
-                    res.render('details',{results:results});
+                    res.render('details', { results: results });
                 }
             });
         }
@@ -88,7 +89,7 @@ app.get('/delete/:id', (req, res) => {
         } else {
             console.log('Data deleted successfully');
         }
-        res.redirect('/');
+        res.redirect('/addEmployee');
     });
 });
 

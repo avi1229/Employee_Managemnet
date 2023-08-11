@@ -57,35 +57,13 @@
             <button type="submit">Submit</button>
         </form>
         <form action="/displayemployees" method="get">
-        <button  onclick="View()">View</button>
+        <button>View</button>
     </form>
-        <button onclick="cancel()">Cancel</button>
-
+        <!-- <button onclick="cancel()">Cancel</button> -->
+        <button ><a style="text-decoration: none;color:white" href="/displayemployees" >Cancel</a></button>
     </div>
 
     <script>
-        <!-- function view() {
-
-            fetch('/displayemployees', {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-
-            })
-                .then(response => response.json())
-                .then(data => {
-                    // Handle the response from the server if needed
-                    console.log(data);
-                    localStorage.setItem('formData', JSON.stringify(data)); // Store data in localStorage
-                    window.location.href = 'details.html'; // Redirect to details page
-                })
-                .catch(error => {
-                    console.error('Error sending data:', error);
-                });
-
-
-        } -->
         function cancel() {
             document.addEventListener('DOMContentLoaded', () => {
                 const form = document.getElementById('employee-form');
@@ -95,7 +73,7 @@
 
 
                     form.reset();
-                    fetch('/employee', {
+                    fetch('/employees', {
                         method: 'GET',
                         headers: {
                             'Content-Type': 'application/json'
