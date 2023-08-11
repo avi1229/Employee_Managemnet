@@ -58,7 +58,7 @@ app.post('/addEmployee', (req, res) => {
     const employeesalary=req.body.employeesalary;
     const address=req.body.employeeaddress;
     const formData=[id,name,dep,gender,maritalstatus,employeesalary,address];
-    const sql = `INSERT INTO employees VALUES (?,?,?,?,?,?,?)`;
+    const sql = `INSERT INTO employees(e_id,e_name,department,e_gender,e_maritalstatus,e_salary,e_address) VALUES (?,?,?,?,?,?,?)`;
     db.query(sql, formData, (err, result) => {
         if (err) {
             console.error('Database insertion error:', err);
@@ -79,7 +79,7 @@ app.post('/addEmployee', (req, res) => {
     });
 });
 
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
 });

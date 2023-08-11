@@ -3,7 +3,8 @@
 USE employee_salary_management;
 
 CREATE TABLE employees (
-    e_id INT PRIMARY KEY,
+    s_no int NOT NULL AUTO_INCREMENT,
+    e_id INT,
     e_name VARCHAR(255) NOT NULL,
     department VARCHAR(255) NOT NULL,
     e_gender VARCHAR(255) NOT NULL,

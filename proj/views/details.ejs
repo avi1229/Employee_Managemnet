@@ -1,46 +1,110 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Details Page</title>
+    <style>
+        .employee {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            text-align:center;
+        }
+        .employee td, .employee th {
+            border: 1px solid #ddd;
+            padding: 8px;
+          }
+          
+          .employee tr:nth-child(even){background-color:  #f2f2f2;}
+          
+          .employee tr:hover {background-color: #ddd;}
+          
+          .employee th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #3d403f;
+            color: white;
+          }
+          .button {border-radius: 12px;}
+          .button {
+             /* Green */
+            border: none;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+          }
+          .edit{
+            background-color: rgb(198, 178, 27)
+        }
+          .delete{
+            background-color:rgba(230, 10, 10, 0.908)
+        }
+    </style>
 </head>
+
 <body>
     <div>
         <!-- Response data will be displayed here -->
-        <h1>Employees Details </h1>
-    <br/>
-    <br/>
-    <br/>
-    <table id="ttable">
-      <thead id="tthead">
-      <tr>
-          <th>Employee Name</th>
-          <th>Employee Id</th>
-          <th>Gender</th>
-          <th>Department</th>
-          <th>Marital Status</th>
-          <th>Salary</th>
-          <th>Address</th>
+        <h1 style="text-align:center">Employees Details </h1>
+        
+        <table class="employee">
+            <thead id="tthead">
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Employee Id</th>
+                    <th>Gender</th>
+                    <th>Department</th>
+                    <th>Marital Status</th>
+                    <th>Salary</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody class="employees">
+                <% results.forEach(function(user){ %>
+                    <tr>
+                        <td id="id">
+                            <%= user.e_name %>
+                        </td>
+                        <td>
+                            <%= user.e_id %>
+                        </td>
+                        <td>
+                            <%= user.e_gender %>
+                        </td>
+                        <td>
+                            <%= user.department%>
+                        </td>
+                        <td>
+                            <%= user.e_maritalstatus%>
+                        </td>
+                        <td>
+                            <%= user.e_salary%>
+                        </td>
+                        <td>
+                            <%= user.e_address %>
+                        </td>
+                        <td>
+                            <button class="button edit">Edit</button>
+                        </td>
+                        <td>
+                            <button class="button delete" >Delete</button>
+                        </td>
 
-          
-      </tr>
-  </thead>
-  <tbody id="ttbody">
-      <% results.forEach(function(user){ %>
-      <tr>
-         <td id="id"><%= user.e_name %></td>
-         <td><%= user.e_id %></td>
-         <td><%= user.e_gender %></td>
-         <td><%= user.e_department%></td>
-         <td><%= user.e_maritalstatus%></td>
-         <td><%= user.e_salary%></td>
-         <td><%= user.address %></td>
- 
-      </tr>
-      <%});%>
-  </tbody>
-  </table>
+                    </tr>
+                    <%});%>
+            </tbody>
+        </table>
     </div>
 
     <script src="details.js"></script>
 </body>
+
 </html>
