@@ -39,6 +39,10 @@
         input[type="number"] {
             -moz-appearance: textfield;
         }
+       div form button{
+            display: flex;
+            justify-content: center;
+        }
     </style>
 </head>
 
@@ -46,7 +50,7 @@
     <header>
         <h1>Employee Salary Management</h1>
     </header>
-    <div class="container">
+    <div class="container button-container">
         <form id="employee-form" action="/addEmployee" method="post">
             <label for="employee-name">Employee name</label>
             <input type="text" id="employee-name" name="employeeName" required>
@@ -92,10 +96,10 @@
             <label for="employee-address">Address</label>
             <input type="text" id="employee-address" name="employeeaddress" required>
 
-            <button type="submit">Submit</button><br /><br />
+            <button type="submit">Submit</button><br />
         </form>
         <form action="/displayemployees" method="get">
-            <button>View</button><br /><br />
+            <button style="justify-content: center;">View</button><br />
         </form>
 
         <button><a style="text-decoration: none;color:white" href="/displayemployees">Cancel</a></button>
