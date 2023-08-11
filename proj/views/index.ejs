@@ -43,6 +43,60 @@
             display: flex;
             justify-content: center;
         }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+          }
+          
+          header {
+            background-color: #35424a;
+            color: white;
+            text-align: center;
+            padding: 1em;
+          }
+          
+          .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2em;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+          }
+          
+          label {
+            display: block;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+          }
+          
+          input[type="text"] {
+            width: 100%;
+            padding: 0.5em;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1em;
+          }
+          
+          button {
+            padding: 0.5em 1em;
+            background-color: #35424a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+          
+          button:hover {
+            background-color: #29363d;
+          }
+        
+          .sex{
+            padding: 0.5em 1em;
+            display: inline;
+          }
     </style>
 </head>
 
@@ -51,7 +105,9 @@
         <h1>Employee Salary Management</h1>
     </header>
     <div class="container button-container">
-        <form id="employee-form" action="/addEmployee" method="post">
+        <form id="employee-form" action="/editEmployee" method="post">
+
+            <!-- <% console.log('formData:', user); %> -->
             <label for="employee-name">Employee name</label>
         
             <input type="text" id="employee-name" value="<%= user && user[0] ? user[0].e_name : '' %>" name="employeeName" required>
@@ -62,10 +118,10 @@
             <label for="department">Department</label>
             <select id="department" name="department" value="<%= user && user[0] ? user[0].e_department : 'select' %>">
                 <option value="select">Select</option>
-                <option value="hr">HR</option>
-                <option value="finance">Finance</option>
-                <option value="it">IT</option>
-                <option value="marketing">Marketing</option>
+                <option value="hr" <% if (user[0].department === "hr") { %>selected<% } %>>HR</option>
+                <option value="finance" <% if (user[0].department === "finance") { %>selected<% } %>>Finance</option>
+                <option value="it" <% if (user[0].department === "it") { %>selected<% } %>>IT</option>
+                <option value="marketing" <% if (user[0].department === "marketing") { %>selected<% } %>>Marketing</option>
             </select>
             <br /><br />
 
@@ -74,20 +130,20 @@
             <div>
                 <label for="sex" required>Sex</label>
                 <tr>
-                    <td><input type="radio" name="sex" value="Male">Male</td>
-                    <td><input type="radio" name="sex" value="Female">Female</td>
-                    <td><input type="radio" name="sex" value="Other">Other</td>
+                    <td><input type="radio" name="sex" value="Male" <% if (user[0].e_gender === 'Male') { %>checked<% } %>>Male</td>
+                    <td><input type="radio" name="sex" value="Female" <% if (user[0].e_gender === 'Female') { %>checked<% } %>>Female</td>
+                    <td><input type="radio" name="sex" value="Other" <% if (user[0].e_gender === 'Other') { %>checked<% } %>>Other</td>
                 </tr>
             </div>
 
             <br />
-
             <div>
                 <label for="maritalstatus" required>Marital Status</label>
                 <tr>
-                    <td><input type="radio" name="maritalstatus" value="Single">Single</td>
-                    <td><input type="radio" name="maritalstatus" value="Married">Married</td>
-                    <td><input type="radio" name="maritalstatus" value="Divorced">Divorced</td>
+                    <td></td>
+                    <td><input type="radio" name="maritalstatus" value="Single" <% if (user[0].e_maritalstatus === 'Single') { %>checked<% } %>>Single</td>
+                    <td><input type="radio" name="maritalstatus" value="Married" <% if (user[0].e_maritalstatus === 'Married') { %>checked<% } %>>Married</td>
+                    <td><input type="radio" name="maritalstatus" value="Divorced" <% if (user[0].e_maritalstatus === 'Divorced') { %>checked<% } %>>Divorced</td>
                 </tr>
             </div>
             <br />

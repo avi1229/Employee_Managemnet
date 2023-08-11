@@ -31,8 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route to render the HTML file
 app.get('/', (req, res) => {
-    results=[{"maritalstatus":" "}];
-    res.render('index',{user:results});
+    results = [{ "maritalstatus": " " }];
+    res.render('index', { user: results });
 });
 
 app.get('/employees', (req, res) => {
@@ -81,6 +81,38 @@ app.post('/addEmployee', (req, res) => {
     });
 });
 
+app.post('/editEmployee', (req, res) => {
+    // const { name, salary } = req.body;
+    console.log(req.body);
+    const id = req.body.employeeid;
+    const name = req.body.employeeName;
+    const dep = req.body.department;
+    const gender = req.body.sex;
+    const maritalstatus = req.body.maritalstatus;
+    const employeesalary = req.body.employeesalary;
+    const address = req.body.employeeaddress;
+    const formData = [id, name, dep, gender, maritalstatus, employeesalary, address, id];
+    const sql = `UPDATE EMPLOYEES SET E_ID=? , E_NAME=? ,DEPARTMENT=?,E_GENDER=?,E_MARITALSTATUS=?,E_SALARY=?,E_ADDRESS=? WHERE E_ID=?`;
+    db.query(sql, formData, (err, result) => {
+        if (err) {
+            console.error('Database updation error:', err);
+            res.status(500).json({ message: 'Error inserting data into the database' });
+        } else {
+            console.log('Data updated successfully');
+            const sql = 'SELECT * FROM employees';
+            db.query(sql, (err, results) => {
+                if (err) {
+                    console.error('Database retrieval error:', err);
+                    res.status(500).json({ message: 'Error retrieving data from the database' });
+                } else {
+                    res.render('details', { results: results });
+                }
+            });
+
+        }
+    });
+});
+
 app.get('/delete/:id', (req, res) => {
     console.log(req.params.id)
     const Id = req.params.id;
@@ -94,9 +126,9 @@ app.get('/delete/:id', (req, res) => {
     });
 });
 
-app.get('/edit/:id',(req,res)=>{
+app.get('/edit/:id', (req, res) => {
     const Id = req.params.id;
-    db.query('select * from employees where e_id = ?',[Id], (error, results) => {
+    db.query('select * from employees where e_id = ?', [Id], (error, results) => {
         if (error) {
             console.log('Error editing data:', error);
         } else {
