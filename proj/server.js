@@ -31,7 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define a route to render the HTML file
 app.get('/', (req, res) => {
-    results = [{ "maritalstatus": " " }];
+    results = [{ "maritalstatus": '' ,
+                    "department":''}];
     res.render('index', { user: results });
 });
 
@@ -45,6 +46,7 @@ app.get('/employees', (req, res) => {
 app.get('/displayemployees', (req, res) => {
     db.query('SELECT * FROM employees', (err, results) => {
         if (err) throw err;
+        console.log(results);
         res.render('details', { results: results });
     });
 });

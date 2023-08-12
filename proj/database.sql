@@ -13,6 +13,8 @@ CREATE TABLE employees (
     e_address VARCHAR(255) NOT NULL
 );
 
-INSERT INTO employees VALUES (123,'John Doe','HR','MALE','UNMARRIED', 50000.00,'GUDIVADA');
-INSERT INTO employees VALUES (124,'Johe','HR','FEMALE','UNMARRIED', 60000.00,'VIJAYAWADA');
+INSERT INTO employees VALUES (123,'Sruthi','hr','Female','Single', 50000.00,'Vijayawada');
+INSERT INTO employees VALUES (124,'Swetha','it','Female','Married', 70000.00,'Hyderabad');
+INSERT INTO employees VALUES (125,'Damodhar','finance','Male','Married', 60000.00,'Hyderabad');
+
 

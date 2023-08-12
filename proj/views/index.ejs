@@ -116,8 +116,8 @@
             <input type="number" id="employee-id" name="employeeid" value="<%= user && user[0] ? user[0].e_id : '' %>" required>
 
             <label for="department">Department</label>
-            <select id="department" name="department" value="<%= user && user[0] ? user[0].e_department : 'select' %>">
-                <option value="select">Select</option>
+            <select id="department" name="department">
+                <option value="select" <% if (user[0].department === "") { %>selected<% } %>>Select</option>
                 <option value="hr" <% if (user[0].department === "hr") { %>selected<% } %>>HR</option>
                 <option value="finance" <% if (user[0].department === "finance") { %>selected<% } %>>Finance</option>
                 <option value="it" <% if (user[0].department === "it") { %>selected<% } %>>IT</option>
